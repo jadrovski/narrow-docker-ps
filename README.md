@@ -1,4 +1,4 @@
-# List containers docker containers in narrow mode
+# List docker containers in narrow mode
 Bash script to output `docker ps` to fit small window (wrapping port mappings).
 
 You will see:
