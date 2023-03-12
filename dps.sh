@@ -48,6 +48,11 @@ for ((i = 1; i < ${#docker_ps_output[@]}; i++)); do
   out_array+=(";")
 done
 
+# we need to add `-n` argument to `column` (only for BSD version of program) to format columns well
+if (column -V 2>&1 | (grep -q "invalid")); then
+  bsd_column=true
+fi
+
 (for ((z = 0; z < ${#out_array[@]}; z++)); do
   echo ${out_array[$z]}
-done) | column -s ";" -t
+done) | column -s ";" -t ${bsd_column:+-n}
